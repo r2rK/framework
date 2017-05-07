@@ -45,6 +45,7 @@ import com.vaadin.event.UIEvents.PollEvent;
 import com.vaadin.event.UIEvents.PollListener;
 import com.vaadin.event.UIEvents.PollNotifier;
 import com.vaadin.event.dnd.DragSourceExtension;
+import com.vaadin.event.dnd.DropTargetExtension;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.ClientConnector;
 import com.vaadin.server.ComponentSizeValidator;
@@ -1831,6 +1832,38 @@ public abstract class UI extends AbstractSingleComponentContainer
      */
     public DragSourceExtension<? extends AbstractComponent> getActiveDragSource() {
         return activeDragSource;
+    }
+
+    /**
+     * Returns whether HTML5 DnD extensions {@link DragSourceExtension} and
+     * {@link DropTargetExtension} and alike should be enabled for mobile
+     * devices.
+     * <p>
+     * By default, it is disabled.
+     *
+     * @return {@code true} if enabled, {@code false} if not
+     * @since 8.1
+     */
+    public boolean isMobileHTML5DndEnabled() {
+        return getState(false).enableMobileHTML5DnD;
+    }
+
+    /**
+     * Enable or disable HTML5 DnD for mobile devices.
+     * <p>
+     * By default, it is disabled.
+     * <p>
+     * After changing this, all added {@link DragSourceExtension} and
+     * {@link DropTargetExtension} and alike are set to work also on mobile
+     * devices.
+     *
+     * @param enabled
+     *            {@code true} if enabled, {@code false} if not
+     */
+    public void setMobileHTML5DnDEnabled(boolean enabled) {
+        if (getState(false).enableMobileHTML5DnD != enabled) {
+            getState().enableMobileHTML5DnD = enabled;
+        }
     }
 
     /**

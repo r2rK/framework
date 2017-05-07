@@ -64,8 +64,9 @@ public class DragSourceExtensionConnector extends AbstractExtensionConnector {
     protected void extend(ServerConnector target) {
         dragSourceWidget = ((ComponentConnector) target).getWidget();
 
-        // Do not make elements draggable on touch devices
-        if (BrowserInfo.get().isTouchDevice()) {
+        // HTML5 DnD is by default not enabled for mobile devices
+        if (BrowserInfo.get().isTouchDevice() && !getConnection()
+                .getUIConnector().isMobileHTML5DndEnabled()) {
             return;
         }
 

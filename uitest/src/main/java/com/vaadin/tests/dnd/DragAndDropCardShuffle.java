@@ -49,6 +49,8 @@ public class DragAndDropCardShuffle extends AbstractTestUIWithLog {
 
     @Override
     protected void setup(VaadinRequest request) {
+        getUI().setMobileHTML5DnDEnabled(true);
+
         NativeSelect<EffectAllowed> effectAllowed = new NativeSelect<>(
                 "Effect Allowed (source)");
         effectAllowed.setItems(EffectAllowed.values());
